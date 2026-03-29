@@ -17,4 +17,4 @@ Homepage = "https://huggingface.co/spaces/Harshi-prog/misinformation-env"
 
 [build-system]
 requires = ["setuptools>=61.0"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
