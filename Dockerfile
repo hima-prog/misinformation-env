@@ -1,20 +1,12 @@
-[project]
-name = "misinformation-detector"
-version = "1.0.0"
-description = "A real-world environment for misinformation detection and fact-checking"
-requires-python = ">=3.10"
-dependencies = [
-    "fastapi==0.111.0",
-    "uvicorn==0.29.0",
-    "pydantic==2.7.1",
-    "openai==1.30.1",
-    "python-dotenv==1.0.1",
-    "requests==2.31.0",
-]
+FROM python:3.10-slim
 
-[project.urls]
-Homepage = "https://huggingface.co/spaces/Harshi-prog/misinformation-env"
+WORKDIR /app
 
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 7860
+
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "7860"]
