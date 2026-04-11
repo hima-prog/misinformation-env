@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "misinformation-detector"
 version = "1.0.0"
@@ -16,13 +20,5 @@ dependencies = [
 [project.scripts]
 serve = "server.app:main"
 
-[project.urls]
-Homepage = "https://huggingface.co/spaces/Harshi-prog/misinformation-env"
-
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["server*"]
+[tool.setuptools]
+packages = ["server"]
