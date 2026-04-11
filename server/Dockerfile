@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install --no-cache-dir --upgrade pip setuptools && \
-    pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir uv && \
+    uv pip install --system -e .
 
 EXPOSE 7860
 
