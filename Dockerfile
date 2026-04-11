@@ -4,8 +4,9 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install --no-cache-dir --upgrade setuptools pip && \
-    pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir --upgrade pip setuptools && \
+    pip install --no-cache-dir -r requirements.txt && \
+    python setup.py develop
 
 EXPOSE 7860
 
