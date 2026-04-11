@@ -3,7 +3,7 @@ from openai import OpenAI
 import requests
 
 API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
-API_KEY = os.getenv("HF_TOKEN", "")
+API_KEY = os.getenv("HF_TOKEN")
 MODEL_NAME = os.getenv("MODEL_NAME", "meta-llama/Llama-3.3-70B-Instruct")
 ENV_URL = os.getenv("ENV_URL", "http://localhost:7860")
 
