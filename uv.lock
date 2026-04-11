@@ -1,0 +1,18 @@
+version = 1
+requires-python = ">=3.10"
+
+[[package]]
+name = "misinformation-detector"
+version = "1.0.0"
+source = { editable = "." }
+
+[package.metadata]
+requires-dist = [
+  { name = "fastapi", specifier = "==0.111.0" },
+  { name = "uvicorn", specifier = "==0.29.0" },
+  { name = "pydantic", specifier = "==2.7.1" },
+  { name = "openai", specifier = ">=2.7.2" },
+  { name = "python-dotenv", specifier = "==1.0.1" },
+  { name = "requests", specifier = "==2.31.0" },
+  { name = "openenv-core", specifier = ">=0.2.0" },
+]
