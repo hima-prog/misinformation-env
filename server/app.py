@@ -1,25 +1,23 @@
 import sys
 import os
+import uvicorn
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
-from env import MisinformationEnv, Action, Observation, Reward, StepResult
+from env import MisinformationEnv, Action
 
 app = FastAPI(title="Misinformation Detector OpenEnv")
-
 env = MisinformationEnv()
-
 
 class ActionRequest(BaseModel):
     action_type: str
     content: str
 
-
 class ResetRequest(BaseModel):
     task_id: Optional[str] = None
-
 
 @app.get("/")
 def root():
@@ -29,12 +27,10 @@ def root():
         "endpoints": ["/reset", "/step", "/state", "/tasks"]
     }
 
-
 @app.post("/reset")
 def reset(request: ResetRequest = ResetRequest()):
     obs = env.reset(task_id=request.task_id)
     return obs.model_dump()
-
 
 @app.post("/step")
 def step(request: ActionRequest):
@@ -50,11 +46,9 @@ def step(request: ActionRequest):
         "info": result.info
     }
 
-
 @app.get("/state")
 def state():
     return env.state()
-
 
 @app.get("/tasks")
 def list_tasks():
@@ -67,3 +61,10 @@ def list_tasks():
         }
         for t in TASKS.values()
     ]
+
+def main():
+    """Main entry point for openenv validate."""
+    uvicorn.run("server.app:app", host="0.0.0.0", port=7860, reload=False)
+
+if __name__ == "__main__":
+    main()
